@@ -10,3 +10,6 @@ conn = mysql.connector.connect(
     user = st.secrets['mysql']['user'],
     password = st.secrets['mysql']['password']
 )
+
+
+st.markdown('connected')

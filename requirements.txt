@@ -1,2 +1,4 @@
 mysqlclient
 SQLAlchemy
+mysql
+mysql.connetor
