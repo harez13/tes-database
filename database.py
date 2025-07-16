@@ -57,14 +57,14 @@ def init_db2():
     conn.close()
 
 def insert_data2(name, email, umur, divisi):
-    conn = sqlite3.connect(DB_NAME)
+    conn = sqlite3.connect(DB_NAME2)
     c = conn.cursor()
     c.execute("INSERT INTO pegawai(name, email, umur, divisi) VALUES (?, ?, ?, ?)", (name, email, umur, divisi))
     conn.commit()
     conn.close()
 
 def fetch_all2():
-    with sqlite3.connect(DB_NAME) as conn:
+    with sqlite3.connect(DB_NAME2) as conn:
         c = conn.cursor()
         c.execute("SELECT * FROM pegawai ORDER BY id DESC")
         data = c.fetchall()
