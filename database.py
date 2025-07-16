@@ -26,10 +26,13 @@ def insert_data(name, email, umur, divisi):
     conn.close()
 
 def fetch_all():
-    conn = sqlite3.connect(DB_NAME)
-    c = conn.cursor()
-    c.execute("SELECT * FROM pegawai ORDER BY id DESC")
-    data = c.fetchall()
-    return pd.read_sql_query("SELECT * FROM pegawai ORDER BY id DESC", conn)
-    
+    with sqlite3.connect(DB_NAME) as conn:
+        c = conn.cursor()
+        c.execute("SELECT * FROM pegawai ORDER BY id DESC")
+        data = c.fetchall()
+        
+        column = [col[0] for col in c.description]
+
+    return pd.DataFrame(data, columns=columns)
+    conn.close()
     
