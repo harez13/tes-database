@@ -1,4 +1,5 @@
 import sqlite3
+import pandas as pd
 
 DB_NAME = "datapegawai.db"
 
@@ -30,4 +31,4 @@ def fetch_all():
     c.execute("SELECT * FROM pegawai ORDER BY id DESC")
     data = c.fetchall()
     conn.close()
-    return data
+    df = pd.DataFrame(data, columns=c.column_names)

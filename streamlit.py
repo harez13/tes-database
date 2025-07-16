@@ -1,5 +1,6 @@
 import streamlit as st
 from database import init_db, insert_data, fetch_all
+import pandas as pd
 
 st.set_page_config(page_title="Data Input App", layout="centered")
 
@@ -24,6 +25,7 @@ with st.form("data_form"):
 
 st.write("## 📑 Data Tersimpan")
 data = fetch_all()
+
 if data:
     st.dataframe(data)
 else:
