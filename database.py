@@ -33,6 +33,6 @@ def fetch_all():
         
         column = [col[0] for col in c.description]
 
-    return pd.DataFrame(data, columns=columns)
+    return pd.DataFrame(data, columns=column)
     conn.close()
     
