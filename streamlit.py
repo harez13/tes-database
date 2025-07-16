@@ -34,7 +34,7 @@ init_db2()
 
 st.title("📋 INPUT KINERJA ITSUPPORT2")
 
-with st.form("data_form"):
+with st.form("data_form2"):
     name = st.text_input("Nama Lengkap")
     email = st.text_input("Email")
     umur = st.number_input("Umur", min_value=1, max_value=120)
