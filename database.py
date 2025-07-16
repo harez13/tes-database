@@ -10,23 +10,24 @@ def init_db():
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT,
-            umur INTEGER
+            umur INTEGER,
+            divisi TEXT
         )
     """)
     conn.commit()
     conn.close()
 
-def insert_data(name, email, umur):
+def insert_data(name, email, umur, divisi):
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
-    c.execute("INSERT INTO users (name, email, umur) VALUES (?, ?, ?)", (name, email, umur))
+    c.execute("INSERT INTO users VALUES (?, ?, ?, ?)", (name, email, umur, divisi))
     conn.commit()
     conn.close()
 
 def fetch_all():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
-    c.execute("SELECT name, email, umur FROM users ORDER BY id DESC")
+    c.execute("SELECT * FROM users ORDER BY id DESC")
     data = c.fetchall()
     conn.close()
     return data
