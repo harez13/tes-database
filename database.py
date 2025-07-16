@@ -30,5 +30,6 @@ def fetch_all():
     c = conn.cursor()
     c.execute("SELECT * FROM pegawai ORDER BY id DESC")
     data = c.fetchall()
-    conn.close()
     df = pd.DataFrame(data, columns=c.column_names)
+    conn.close()
+    
