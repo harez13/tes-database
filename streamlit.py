@@ -1,15 +1,29 @@
 import streamlit as st
-import mysql.connector
+from database import init_db, insert_data, fetch_all
 
-st.title('Test Database')
+st.set_page_config(page_title="Data Input App", layout="centered")
 
-conn = mysql.connector.connect(
-    host = st.secrets['mysql']['host'],
-    port = st.secrets['mysql']['port'],
-    database = st.secrets['mysql']['database'],
-    user = st.secrets['mysql']['user'],
-    password = st.secrets['mysql']['password']
-)
+# Inisialisasi DB
+init_db()
 
+st.title("📋 INPUT KINERJA ITSUPPORT")
 
-st.markdown('connected')
+with st.form("data_form"):
+    name = st.text_input("Nama Lengkap")
+    email = st.text_input("Email")
+    umur = st.number_input("Umur", min_value=1, max_value=120)
+    submitted = st.form_submit_button("Kirim")
+
+    if submitted:
+        if name and email:
+            insert_data(name, email, umur, divisi)
+            st.success("✅ Data berhasil disimpan!")
+        else:
+            st.warning("⚠️ Mohon lengkapi semua kolom!")
+
+st.write("## 📑 Data Tersimpan")
+data = fetch_all()
+if data:
+    st.dataframe(data)
+else:
+    st.info("Belum ada data.")
