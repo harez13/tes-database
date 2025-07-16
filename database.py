@@ -1,12 +1,12 @@
 import sqlite3
 
-DB_NAME = "data.db"
+DB_NAME = "datapegawai.db"
 
 def init_db():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
     c.execute("""
-        CREATE TABLE IF NOT EXISTS users (
+        CREATE TABLE IF NOT EXISTS pegawai (
             id INTEGER PRIMARY KEY AUTOINCREMENT,
             name TEXT,
             email TEXT,
@@ -20,14 +20,14 @@ def init_db():
 def insert_data(name, email, umur, divisi):
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
-    c.execute("INSERT INTO users(name, email, umur, divisi) VALUES (?, ?, ?, ?)", (name, email, umur, divisi))
+    c.execute("INSERT INTO pegawai(name, email, umur, divisi) VALUES (?, ?, ?, ?)", (name, email, umur, divisi))
     conn.commit()
     conn.close()
 
 def fetch_all():
     conn = sqlite3.connect(DB_NAME)
     c = conn.cursor()
-    c.execute("SELECT * FROM users ORDER BY id DESC")
+    c.execute("SELECT * FROM pegawai ORDER BY id DESC")
     data = c.fetchall()
     conn.close()
     return data
